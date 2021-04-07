@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link
+      href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    
+    <!-- fontawesome CSS -->
+    <link
+      rel="stylesheet"
+      href="{% static 'vendor/fontawesome/css/all.min.css' %}"
+      type="text/css"
+    />
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/core.css' %}" rel="stylesheet" type="text/css"/>
+  </head>
+
+  <body>
+    <div class="container-fluid pl-0">
+      <div class="row">
+        <div class="col-md-2">
+          <aside>
+              <a href="{% url 'core:main' %}">
+                <img class ="logo" src="{% static 'img/main_logo.png' %}" loading="lazy">
+              </a></br>
+              <a class="nav-link fas fa-home {% if url_name == 'main' %}active{% endif %}" href="{% url 'core:main' %}"> Главная страница</a></br>
+              <a class="nav-link fas fa-file-invoice-dollar {% if url_name == 'history' %}active{% endif %}" href="{% url 'core:history' %}"> История операций</a></br>
+              <a class="nav-link fas fa-chart-pie {% if url_name == 'report' %}active{% endif %}" href="{% url 'core:report' %}"> Отчет</a></br>
+          </aside>
+        </div>
+        
+        <div class="col-md-10">
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- Bootstrap core JavaScript -->
+    <script
+      type="text/javascript"
+      src="{% static 'vendor/jquery/jquery.min.js' %}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"
+    ></script>
+    <!-- Google charts JS -->
+    <script
+      type="text/javascript"
+      src="{% static 'vendor/google-charts/js/loader.js' %}"
+    ></script>
+
+    {% block javascript %}
+    {% endblock %}
+  </body>
+</html>
